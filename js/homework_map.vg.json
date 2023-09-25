@@ -36,7 +36,7 @@
       },
       {
         "data": {
-          "url": "../data/CityPair_Clean.csv"
+          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
         },
         "projection": {
           "type": "equalEarth",
@@ -58,7 +58,7 @@
       },
       {
         "data": {
-          "url": "../data/CityPair_Clean.csv"
+          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
         },
         "projection": {
           "type": "equalEarth",
@@ -80,7 +80,7 @@
       },
       {
         "data": {
-          "url": "../data/CityPair_Clean.csv"
+          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
         },
         "transform": [
           {"filter": {"field": "Australian", "equal": "Melbourne"}},
@@ -88,7 +88,7 @@
             "lookup": "Australian",
             "from": {
               "data": {
-                "url": "../data/CityPair_Clean.csv"
+                "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
               },
               "key": "Australian",
               "fields": ["Melbourne_Latitude", "Melbourne_Longitude"]
@@ -99,7 +99,7 @@
             "lookup": "International",
             "from": {
               "data": {
-                "url": "../data/CityPair_Clean.csv"
+                "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
               },
               "key": "International",
               "fields": ["Latitude", "Longitude"]
