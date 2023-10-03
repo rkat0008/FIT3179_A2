@@ -52,12 +52,28 @@
         "mark": "rule",
         "encoding": {
           "x": {
-            "datum": {"Year": "2020"},
-          "type": "temporal",
-          "title": "Reference Line"
+            "datum": 1577797200000,
+            "type": "temporal",
+            "title": "Reference Line"
           },
           "color": {"value": "red"},
-          "size": {"value": 2}
+          "size": {"value": 1},
+          "strokeDash": {"value": [2, 2]},
+          "text": {"value": "Year 2020"}
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 5
+        },
+        "encoding": {
+          "x": {"datum": 1577797200000,
+          "type": "temporal"},
+          "text": {"value": "Year 2020"},
+          "color": {"value": "red"}
         }
       }
     ]
