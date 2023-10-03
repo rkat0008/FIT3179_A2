@@ -3,7 +3,7 @@
     "width": 800,
     "height": 500,
     "title": "Flights out of Melbourne",
-    "projection": {"type": "equalEarth", "reflectY": false},
+    "projection": {"type": "equalEarth", "reflectY": false, "rotate": [-154, 0, 0]},
     "layer": [
       {
         "data": {
@@ -21,50 +21,22 @@
       },
       {
         "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+          "format": {"type": "topojson", "feature": "oceans"}
+        },
+        "mark": {"type": "geoshape", "fill": "skyblue"}
+      },
+      {
+        "data": {
           "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
           "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
         },
         "projection": {
-          "type": "identity",
-          "reflectY": true
+          "type": "equalEarth",
+          "reflectY": false,
+          "rotate": [-154, 0, 0]
         },
         "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
-      },
-      {
-        "data": {
-          "url": "../data/CityPair_Clean_CRS.csv"
-        },
-        "mark": "circle",
-        "encoding": {
-          "longitude": {
-            "field": "X",
-            "type": "quantitative"
-          },
-          "latitude": {
-            "field": "Y",
-            "type": "quantitative"
-          },
-          "size": {"value": 5},
-          "color": {"value": "gray"}
-        }
-      },
-      {
-        "data": {
-          "url": "../data/CityPair_Clean_CRS.csv"
-        },
-        "mark": "circle",
-        "encoding": {
-          "longitude": {
-            "field": "X_MEL",
-            "type": "quantitative"
-          },
-          "latitude": {
-            "field": "Y_MEL",
-            "type": "quantitative"
-          },
-          "size": {"value": 5},
-          "color": {"value": "red"}
-        }
       },
       {
         "data": {
@@ -79,7 +51,7 @@
                 "url": "../data/CityPair_Clean_CRS.csv"
               },
               "key": "Australian",
-              "fields": ["Y_MEL", "X_MEL"]
+              "fields": ["Melbourne_Latitude", "Melbourne_Longitude"]
             },
             "as": ["origin_latitude", "origin_longitude"]
           },
@@ -90,7 +62,7 @@
                 "url": "../data/CityPair_Clean_CRS.csv"
               },
               "key": "International",
-              "fields": ["Y", "X"]
+              "fields": ["Latitude", "Longitude"]
             },
             "as": ["dest_latitude", "dest_longitude"]
           }
@@ -107,8 +79,43 @@
           },
           "longitude2": {"field": "dest_longitude"},
           "latitude2": {"field": "dest_latitude"},
-          "strokeWidth": {"field": "OutSeatsMax", "type": "quantitative", "scale": {"type": "sqrt"}},
-          "color": {"field": "OutSeatsMax", "type": "quantitative", "scale": {"type": "sqrt", "range": ["gray", "red"]}}
+          "color": {"field": "OutSeatsMax", "type": "quantitative", "scale": {"type": "sqrt", "range": ["red", "black"]}}
+        }
+      },
+      {
+        "data": {
+          "url": "../data/CityPair_Clean_CRS.csv"
+        },
+        "mark": "circle",
+        "encoding": {
+          "longitude": {
+            "field": "Longitude",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "Latitude",
+            "type": "quantitative"
+          },
+          "size": {"field": "OutSeatsMax", "type": "quantitative", "scale": {"type": "sqrt"}},
+          "color": {"field": "OutSeatsMax", "type": "quantitative", "scale": {"type": "sqrt", "range": ["red", "black"]}}
+        }
+      },
+      {
+        "data": {
+          "url": "../data/CityPair_Clean_CRS.csv"
+        },
+        "mark": "circle",
+        "encoding": {
+          "longitude": {
+            "field": "Melbourne_Longitude",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "Melbourne_Latitude",
+            "type": "quantitative"
+          },
+          "size": {"value": 100},
+          "color": {"value": "black"}
         }
       }
     ]

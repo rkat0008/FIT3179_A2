@@ -1,0 +1,47 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "../data/CityPair_Clean_CRS.csv"
+    },
+    "width": 800,
+    "height": 500,
+    "mark": {
+      "type": "circle",
+      "opacity": 0.8,
+      "stroke": "black",
+      "strokeWidth": 1
+    },
+    "transform": [
+        {
+          "calculate": "year(datum.Month)",
+          "as": "Year"
+        }
+      ],
+    "encoding": {
+        "x": {
+            "timeUnit": "year",
+            "field": "Month",
+            "type": "temporal",
+            "axis": {
+                "grid": false,
+                "format": "%Y",
+                "title": "",
+                "tickCount": {"interval": "year", "step": 1}
+            }
+            },
+      "y": {"field": "Country", 
+      "type": "nominal",
+      "sort": {"op": "sum", "field": "OutSeatsMax", "order": "descending"}, 
+      "axis": {"title": "", "grid": true, "labelPadding": 10}},
+      "size": {
+        "aggregate": "sum",
+        "field": "OutSeatsMax",
+        "type": "quantitative",
+        "title": "Annual Seats",
+        "legend": {"clipHeight": 20},
+        "scale": {"rangeMax": 1500}
+      },
+      "color": {"field": "Entity", "type": "nominal", "legend": null}
+    }
+}
+  
