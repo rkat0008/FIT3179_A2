@@ -17,11 +17,17 @@
 <body>
   
 <div id="symbol_map"></div>
-
 <script type="text/javascript">
-
   var spec2 = "js/homework_map.vg.json";
   vegaEmbed('#symbol_map', spec2).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+
+<div id="price_index"></div>
+<script type="text/javascript">
+  var spec3 = "js/price_index.vg.json";
+  vegaEmbed('#price_index', spec3).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>

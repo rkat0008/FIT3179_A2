@@ -9,7 +9,7 @@
     "layer": [
       {
         "data": {
-          "url": "../data/ne_110m_admin_0_countries.json",
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
           "format": {
             "type": "topojson",
             "feature": "ne_110m_admin_0_countries"
@@ -42,7 +42,7 @@
       },
       {
         "data": {
-          "url": "../data/CityPair_Clean.csv"
+          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
         },
         "transform": [
           {"filter": {"param": "time_brush"}},
@@ -51,7 +51,7 @@
             "lookup": "Australian",
             "from": {
               "data": {
-                "url": "../data/CityPair_Clean.csv"
+                "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
               },
               "key": "Australian",
               "fields": ["Melbourne_Latitude", "Melbourne_Longitude"]
@@ -62,7 +62,7 @@
             "lookup": "International",
             "from": {
               "data": {
-                "url": "../data/CityPair_Clean.csv"
+                "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
               },
               "key": "International",
               "fields": ["Latitude", "Longitude"]
@@ -85,7 +85,7 @@
       },
       {
         "data": {
-          "url": "../data/CityPair_Clean.csv"
+          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
         },
         "transform": [
           {"filter": {"param": "time_brush"}}],
@@ -140,7 +140,7 @@
       },
       {
         "data": {
-          "url": "../data/CityPair_Clean.csv"
+          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
         },
         "transform": [
           {"filter": {"param": "time_brush"}}],
@@ -164,7 +164,7 @@
   "width": 800,
   "height": 60,
   "data": {
-    "url": "../data/CityPair_Clean.csv"
+    "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
   },
   "mark": "area",
   "title": "Use this line chart to filter out the data based on time",
@@ -187,7 +187,85 @@
       "title": "Count"
     }
   }
-}
+}, {
+  "data": {
+    "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
+  },
+"width": 800,
+    "height": 200,
+    "layer": [
+      {
+        "mark": {
+          "type": "circle",
+          "opacity": 0.8,
+          "stroke": "black",
+          "strokeWidth": 1
+        },
+        "transform": [
+          {
+            "calculate": "year(datum.Month)",
+            "as": "Year"
+          }
+        ],
+        "encoding": {
+          "x": {
+            "timeUnit": "year",
+            "field": "Month",
+            "type": "temporal",
+            "axis": {
+              "grid": false,
+              "format": "%Y",
+              "title": "",
+              "tickCount": {"interval": "year", "step": 1}
+            }
+          },
+          "y": {
+            "field": "Port Region",
+            "type": "nominal",
+            "sort": {"op": "sum", "field": "OutSeatsMax", "order": "descending"},
+            "axis": {"title": "", "grid": true, "labelPadding": 10}
+          },
+          "size": {
+            "aggregate": "sum",
+            "field": "OutSeatsMax",
+            "type": "quantitative",
+            "title": "Annual Passengers",
+            "legend": {"clipHeight": 20},
+            "scale": {"rangeMax": 1500}
+          },
+          "color": {"field": "NONE", "type": "nominal", "legend": null}
+        }
+      },
+      {
+        "mark": "rule",
+        "encoding": {
+          "x": {
+            "datum": 1577797200000,
+            "type": "temporal",
+            "title": "Reference Line"
+          },
+          "color": {"value": "red"},
+          "size": {"value": 0.01},
+          "strokeDash": {"value": [2, 2]},
+          "text": {"value": "Year 2020"}
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 5
+        },
+        "encoding": {
+          "x": {"datum": 1577797200000,
+          "type": "temporal"},
+          "text": {"value": "COVID-19"},
+          "color": {"value": "red"}
+        }
+      }
+    ]
+  }
 ],
   "config": {"title": {"font": "sans-serif", "fontSize": 14}}
   }
