@@ -1,10 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-      "url": "../data/CityPair_Clean_CRS.csv"
+      "url": "../data/CityPair_Clean.csv"
     },
     "width": 800,
-    "height": 500,
+    "height": 200,
     "layer": [
       {
         "mark": {
@@ -32,7 +32,7 @@
             }
           },
           "y": {
-            "field": "Country",
+            "field": "Port Region",
             "type": "nominal",
             "sort": {"op": "sum", "field": "OutSeatsMax", "order": "descending"},
             "axis": {"title": "", "grid": true, "labelPadding": 10}
@@ -41,11 +41,11 @@
             "aggregate": "sum",
             "field": "OutSeatsMax",
             "type": "quantitative",
-            "title": "Annual Seats",
+            "title": "Annual Passengers",
             "legend": {"clipHeight": 20},
             "scale": {"rangeMax": 1500}
           },
-          "color": {"field": "Entity", "type": "nominal", "legend": null}
+          "color": {"field": "NONE", "type": "nominal", "legend": null}
         }
       },
       {
@@ -57,7 +57,7 @@
             "title": "Reference Line"
           },
           "color": {"value": "red"},
-          "size": {"value": 1},
+          "size": {"value": 0.01},
           "strokeDash": {"value": [2, 2]},
           "text": {"value": "Year 2020"}
         }
@@ -72,7 +72,7 @@
         "encoding": {
           "x": {"datum": 1577797200000,
           "type": "temporal"},
-          "text": {"value": "Year 2020"},
+          "text": {"value": "COVID-19"},
           "color": {"value": "red"}
         }
       }
