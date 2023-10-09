@@ -3,6 +3,8 @@
     "data": {
       "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
     },
+    "width": 800,
+    "height": 300,
     "transform": [
       {
         "calculate": "toDate(datum.Month, '%d/%m/%Y')",
