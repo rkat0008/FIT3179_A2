@@ -3,6 +3,16 @@
   "description": "A scatterplot showing horsepower and miles per gallons for various cars.",
   "width": 800,
   "height": 300,
+  "title": {
+    "text": "Air Route Load Factor vs. Passengers Flown, by Selected Year and Month",
+    "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
+    "subtitleFontStyle": "italic",
+    "subtitlePadding": 5,
+    "frame": "bounds",
+    "anchor": "middle",
+    "offset": 12,
+    "zindex": 0
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv",
     "format": {

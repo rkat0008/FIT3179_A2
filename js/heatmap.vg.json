@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
+    },
+    "transform": [
+      {
+        "calculate": "toDate(datum.Month, '%d/%m/%Y')",
+        "as": "Date"
+      },
+      {
+        "calculate": "year(datum.Date)",
+        "as": "Year"
+      },
+      {
+        "calculate": "month(datum.Date)",
+        "as": "Month"
+      },
+      {
+        "aggregate": [
+          { "op": "sum", "field": "PaxOut", "as": "PaxOutSum" }
+        ],
+        "groupby": ["Port Country", "Month_Name"]
+      }
+    ],
+    "title": "Seasonal Travel Patterns",
+    "config": {
+      "view": {
+        "strokeWidth": 0,
+        "step": 13
+      },
+      "axis": {
+        "domain": false
+      }
+    },
+    "mark": "rect",
+    "encoding": {
+      "x": {
+        "field": "Month",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      "y": {
+        "field": "Port Country",
+        "type": "nominal",
+        "title": "Cities"
+      },
+      "color": {
+        "field": "PaxOutSum",
+        "type": "quantitative",
+        "legend": {
+          "title": null
+        }
+      }
+    }
+  }
+  
