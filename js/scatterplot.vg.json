@@ -3,6 +3,13 @@
   "description": "A scatterplot showing horsepower and miles per gallons for various cars.",
   "width": 800,
   "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv",
+    "format": {
+      "type": "csv",
+      "parse": {"month": "date:'%m/%d/%Y'"}
+    }
+  },
   "params": [
     {
       "name": "Year_Selection",
@@ -30,13 +37,6 @@
       "bind": "legend"
     }
   ],
-  "data": {
-    "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv",
-    "format": {
-      "type": "csv",
-      "parse": {"month": "date:'%m/%d/%Y'"}
-    }
-  },
   "transform": [
     {
       "calculate": "toDate(datum.Month, '%d/%m/%Y')",
