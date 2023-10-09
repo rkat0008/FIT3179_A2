@@ -6,15 +6,16 @@
       "subtitleFontStyle": "italic",
       "subtitlePadding": 5,
       "frame": "bounds",
-      "anchor": "start",
+      "anchor": "middle",
       "offset": 12,
-      "zindex": 0
+      "zindex": 0,
+      "fontSize": 20
     },
     "data": {
       "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/Domestic_Price_Index.csv",
       "format": {"parse": {"date": "date:'%m/%d/%Y'"}}
     },
-    "width": 650,
+    "width": 800,
     "height": 350,
     "layer": [
       {

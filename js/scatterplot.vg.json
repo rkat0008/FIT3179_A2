@@ -31,7 +31,7 @@
     }
   ],
   "data": {
-    "url": "../data/CityPair_Clean.csv",
+    "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv",
     "format": {
       "type": "csv",
       "parse": {"month": "date:'%m/%d/%Y'"}

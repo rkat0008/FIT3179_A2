@@ -3,8 +3,17 @@
     "vconcat": [
       {
     "width": 800,
-    "height": 500,
-    "title": "Flights out of Melbourne",
+    "height": 400,
+    "title": {
+      "text": "Airline Routes out of Melbourne Airport, Selected Period",
+      "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
+      "subtitleFontStyle": "italic",
+      "subtitlePadding": 5,
+      "frame": "bounds",
+      "anchor": "middle",
+      "offset": 12,
+      "zindex": 0
+    },
     "projection": {"type": "equalEarth", "reflectY": false, "rotate": [-154, 0, 0]},
     "layer": [
       {
@@ -191,6 +200,16 @@
     }
   }
 }, {
+  "title": {
+    "text": "Most Popular International Regions out of Melbourne, Over Time",
+    "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
+    "subtitleFontStyle": "italic",
+    "subtitlePadding": 5,
+    "frame": "bounds",
+    "anchor": "middle",
+    "offset": 12,
+    "zindex": 0
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
   },
