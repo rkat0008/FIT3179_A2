@@ -1,5 +1,15 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Australian Domestic Airfares, Over Time, by Class of Travel",
+      "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
+      "subtitleFontStyle": "italic",
+      "subtitlePadding": 5,
+      "frame": "bounds",
+      "anchor": "start",
+      "offset": 12,
+      "zindex": 0
+    },
     "data": {
       "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/Domestic_Price_Index.csv",
       "format": {"parse": {"date": "date:'%m/%d/%Y'"}}

@@ -68,6 +68,16 @@
               "fields": ["Latitude", "Longitude"]
             },
             "as": ["dest_latitude", "dest_longitude"]
+          },
+          {
+            "type": "linkpath",
+            "orient": "radial",
+            "sourceX": "origin_longitude",
+            "sourceY": "origin_latitude",
+            "targetX": "dest_longitude",
+            "targetY": "dest_latitude",
+            "shape": "curve",
+            "as": "linkpath"
           }
         ],
         "mark": "rule",
@@ -88,7 +98,14 @@
           "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
         },
         "transform": [
-          {"filter": {"param": "time_brush"}}],
+            {"filter": {"param": "time_brush"}},
+          {
+            "aggregate": [
+              {"op": "sum", "field": "PaxOut", "as": "PaxOutSum"}
+            ],
+            "groupby": ["International", "Longitude", "Latitude"]
+          }
+        ],
         "mark": "circle",
         "encoding": {
           "longitude": {
@@ -99,64 +116,50 @@
             "field": "Latitude",
             "type": "quantitative"
           },
-          "size": {"field": "PaxOut", "type": "quantitative", "scale": {"type": "sqrt"}},
-          "color": {"field": "PaxOut", "type": "quantitative", "scale": {"type": "sqrt", "range": ["red", "black"]}},
+          "size": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "sqrt"}},
+          "color": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "sqrt", "range": ["red", "black"]}},
           "tooltip": [
             {"field": "International", "type": "nominal", "title": "City"},
-            {"field": "PaxOut", "type": "quantitative"},
+            {"field": "PaxOutSum", "type": "quantitative"},
             {"field": "Port Region", "type": "nominal"}
           ]
         },
         "layer": [
-          {"mark": {"type": "circle", "opacity": 0.4, "size": 1}},
+          {"mark": {"type": "circle", "opacity": 0.5, "size": 1}},
           {
             "transform": [
               {
                 "window": [{"op": "rank", "as": "ranking"}],
-                "sort": [{"field": "PaxOut", "order": "ascending"}]
+                "sort": [{"field": "PaxOutSum", "order": "ascending"}]
               },
               {"filter": "datum.ranking == 1"},
               {
-                "calculate": "'The worst earthquake of; the selected period: ' + datum['PaxOut']",
+                "calculate": "datum['International'] + ' is: ' + datum['PaxOutSum']",
                 "as": "text_annotation_raw"
               },
               {
-                "calculate": "split(datum.text_annotation_raw, ';')",
+                "calculate": "split(datum.text_annotation_raw, ': ')",
                 "as": "text_annotation"
+              },
+              {
+                "calculate": "12",
+                "as": "textSizee"
               }
             ],
             "mark": {
               "type": "text",
-              "align": "right",
-              "dx": -1,
-              "dy": -1,
-              "baseline": "middle",
+              "align": "left",
+              "dx": 5,
+              "dy": 5,
+              "baseline": "top",
               "fontStyle": "italic",
-              "fontSize": 1
-            },
-            "encoding": {"text": {"field": "text_annotation"}}
+              "limit": 1000,
+              "fontSize": 12},
+            "encoding": {
+              "text": {"field": "text_annotation", "type": "nominal"},
+              "fontSize": {"field": "textSizee"}}
           }
         ]
-      },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
-        },
-        "transform": [
-          {"filter": {"param": "time_brush"}}],
-        "mark": "circle",
-        "encoding": {
-          "longitude": {
-            "field": "Melbourne_Longitude",
-            "type": "quantitative"
-          },
-          "latitude": {
-            "field": "Melbourne_Latitude",
-            "type": "quantitative"
-          },
-          "size": {"value": 100},
-          "color": {"value": "black"}
-        }
       }
     ]
 },
@@ -267,5 +270,5 @@
     ]
   }
 ],
-  "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+  "config": {"title": {"font": "sans-serif", "fontSize": 18}}
   }

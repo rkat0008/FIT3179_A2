@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A scatterplot showing horsepower and miles per gallons for various cars.",
+  "width": 800,
+  "height": 300,
+  "params": [
+    {
+      "name": "Year_Selection",
+      "value": 2009,
+      "bind": {
+        "input": "range",
+        "min": 2009,
+        "max": 2023,
+        "step": 1,
+        "name": "Year:  "
+      }
+    },
+    {
+      "name": "Month_Selection",
+      "value": "January",
+      "bind": {
+        "input": "select",
+        "options": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        "name": "Month:  "
+      }
+    },
+    {
+      "name": "Region",
+      "select": {"type": "point", "fields": ["Port Region"]},
+      "bind": "legend"
+    }
+  ],
+  "data": {
+    "url": "../data/CityPair_Clean.csv",
+    "format": {
+      "type": "csv",
+      "parse": {"month": "date:'%m/%d/%Y'"}
+    }
+  },
+  "transform": [
+    {
+      "calculate": "toDate(datum.Month, '%d/%m/%Y')",
+      "as": "Date"
+    },
+    {
+      "calculate": "year(datum.Date)",
+      "as": "Year"
+    },
+    {
+      "filter": "datum.Year == Year_Selection && datum.Month_Name == Month_Selection"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "point",
+      "encoding": {
+        "x": {"field": "Average_Load_Factor", "type": "quantitative", "axis": {"format": ".2%"}},
+        "y": {"field": "PaxOut", "type": "quantitative", "scale": {"type": "log"}, "axis": {"title": "Y-Axis", "tickCount": 4, "grid": true}},
+        "size": {"field": "Airline_Count"},
+        "color": {"field": "Port Region"},
+        "tooltip": [
+          {"field": "International", "type": "nominal", "title": "City"},
+          {"field": "PaxOut", "type": "quantitative"},
+          {"field": "OutSeatsMax", "type": "quantitative"},
+          {"field": "Average_Load_Factor", "type": "quantitative", "format": ".2%"},
+          {"field": "Port Region", "type": "nominal"},
+          {"field": "Port Country", "type": "nominal"},
+          {"field": "Airline_Count", "type": "quantitative"}
+        ],
+        "opacity": {
+          "condition": {"param": "Region", "value": 1},
+          "value": 0.2
+        }
+      }
+    }
+  ]
+}

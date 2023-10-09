@@ -5,7 +5,7 @@
     },
     "vconcat": [
       {
-        "width": "container",
+        "width": 800,
         "height": 400,
         "title": "Earthquakes above a magnitude of 5 (2000-2021)",
         "projection": {"type": "equalEarth", "rotate": [-150, 0, 0]},
@@ -88,7 +88,7 @@
         ]
       },
       {
-        "width": "container",
+        "width": 800,
         "height": 60,
         "mark": "line",
         "title": "Use this line chart to filter out the data based on time",
@@ -112,7 +112,7 @@
         }
       },
       {
-        "width": "container",
+        "width": 800,
         "transform": [
           {
             "bin": {"step": 0.5, "extent": [5, 7]},
