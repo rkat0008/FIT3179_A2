@@ -18,9 +18,9 @@
       },
       {
         "aggregate": [
-          { "op": "sum", "field": "PaxOut", "as": "PaxOutSum" }
+          { "op": "mean", "field": "PaxOut", "as": "PaxOutSum" }
         ],
-        "groupby": ["Port Country", "Month_Name"]
+        "groupby": ["Port Country", "Month_Number"]
       }
     ],
     "title": "Seasonal Travel Patterns",
@@ -36,9 +36,10 @@
     "mark": "rect",
     "encoding": {
       "x": {
-        "field": "Month",
+        "field": "Month_Number",
         "type": "ordinal",
-        "title": "Month"
+        "title": "Month",
+        "sort": {"op": "min", "field": "Month_Number", "order": "ascending"}
       },
       "y": {
         "field": "Port Country",
@@ -50,7 +51,8 @@
         "type": "quantitative",
         "legend": {
           "title": null
-        }
+        },
+        "scale": {"type": "linear"}
       }
     }
   }

@@ -104,7 +104,21 @@
                   // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
                 }).catch(console.error);
               </script>
-          </div>
+            </div>
+
+            <!-- Graph 4 -->
+            <div class="graph">
+                <h3>Graph 3: Title of Graph</h3>
+                <img src="graph2.png" alt="Graph 2">
+                <p>scatterplot</p>
+                <div id="heatmap"></div>
+                <script type="text/javascript">
+                  var spec5 = "js/heatmap.vg.json";
+                  vegaEmbed('#heatmap', spec5).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                  }).catch(console.error);
+                </script>
+              </div>
 
         </section>
 
