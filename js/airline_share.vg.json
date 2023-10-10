@@ -1,0 +1,60 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 250,
+    "data": { "url": "../data/Airline_Stats.csv",
+    "format": {
+        "type": "csv",
+        "parse": {"month": "date:'%m/%d/%Y'"}
+      }},
+    "transform": [                 
+        {
+            "calculate": "datum.Airline === 'Qantas Airways' || datum.Airline === 'Singapore Airlines' || datum.Airline === 'Qatar Airways' || datum.Airline === 'Air New Zealand' || datum.Airline === 'Virgin Australia' || datum.Airline === 'Emirates'|| datum.Airline === 'Jetstar' ? datum.Airline : '1) Other Airlines'",
+            "as": "Select_Airlines"
+        },
+        {
+            "aggregate": [{"op": "sum", "field": "MaxSeats", "as": "MaxSeatsSum"}],
+            "groupby": ["Month", "Select_Airlines", "Year"]
+        },
+        {
+            "sort": [{ "field": "MaxSeats", "order": "descending"}],
+            "window": [{"op": "row_number", "as": "rank"}],
+            "groupby": ["Month", "Year"]
+        },
+        {
+            "joinaggregate": [
+              { "op": "sum", "field": "MaxSeatsSum", "as": "TotalSeats" }
+            ],
+            "groupby": ["Month", "Year"]
+        },
+        {
+            "calculate": "datum.MaxSeatsSum / datum.TotalSeats",
+            "as": "Percentage"
+        }
+        ],
+    "encoding": {
+      "y": {"field": "Year", "title": null, "type": "ordinal"}
+    },
+    "layer": [{
+      "mark": "bar",
+      "encoding": {
+        "color": {
+            "field": "Select_Airlines",
+            "scale": {"scheme": "tableau10"},
+            "sort": {"op": "sum", "field": "MaxSeatsSum", "order": "descending"}
+        },
+        "x": {
+          "aggregate": "sum",
+          "field": "MaxSeatsSum",
+          "title": "International Market Share",
+          "stack":  "normalize"
+        },
+        "tooltip": [
+            {"field": "Select_Airlines", "type": "nominal", "title": "Airline"},
+            {"field": "MaxSeatsSum", "type": "quantitative", "format": ","},
+            {"field": "Year", "type": "ordinal"},
+            {"field": "Percentage", "type": "quantitative", "format": ".2%"}
+          ]
+      }
+    }]
+  }
+  

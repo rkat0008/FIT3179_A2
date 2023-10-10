@@ -14,6 +14,9 @@
       "offset": 12,
       "zindex": 0
     },
+    "data": {
+      "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
+    },
     "projection": {"type": "equalEarth", "reflectY": false, "rotate": [-154, 0, 0]},
     "layer": [
       {
@@ -77,19 +80,9 @@
               "fields": ["Latitude", "Longitude"]
             },
             "as": ["dest_latitude", "dest_longitude"]
-          },
-          {
-            "type": "linkpath",
-            "orient": "radial",
-            "sourceX": "origin_longitude",
-            "sourceY": "origin_latitude",
-            "targetX": "dest_longitude",
-            "targetY": "dest_latitude",
-            "shape": "curve",
-            "as": "linkpath"
           }
         ],
-        "mark": "rule",
+        "mark": {"type": "rule", "opacity": 0.01, "color": "gray"},
         "encoding": {
           "longitude": {
             "field": "origin_longitude",
@@ -103,9 +96,6 @@
           "latitude2": {"field": "dest_latitude"}}
       },
       {
-        "data": {
-          "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
-        },
         "transform": [
             {"filter": {"param": "time_brush"}},
           {
@@ -115,7 +105,6 @@
             "groupby": ["International", "Longitude", "Latitude"]
           }
         ],
-        "mark": "circle",
         "encoding": {
           "longitude": {
             "field": "Longitude",
@@ -125,34 +114,29 @@
             "field": "Latitude",
             "type": "quantitative"
           },
-          "size": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "sqrt"}},
-          "color": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "sqrt", "range": ["red", "black"]}},
+          "color": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "linear", "range": ["gray", "black"]}},
           "tooltip": [
             {"field": "International", "type": "nominal", "title": "City"},
             {"field": "PaxOutSum", "type": "quantitative"},
             {"field": "Port Region", "type": "nominal"}
           ]
-        },
+        },        
         "layer": [
-          {"mark": {"type": "circle", "opacity": 0.5, "size": 1}},
+          {"mark": {"type": "circle", "opacity": 0.8, "size": 75}},
           {
             "transform": [
               {
                 "window": [{"op": "rank", "as": "ranking"}],
-                "sort": [{"field": "PaxOutSum", "order": "ascending"}]
+                "sort": [{"field": "PaxOutSum", "order": "descending"}]
               },
               {"filter": "datum.ranking == 1"},
               {
-                "calculate": "datum['International'] + ' is the least popular destination; visitors: ' + datum['PaxOutSum']",
+                "calculate": "datum['International'] + ' is the most popular destination; with ' + datum['PaxOutSum'] + ' passengers from Melbourne.'",
                 "as": "text_annotation_raw"
               },
               {
-                "calculate": "split(datum.text_annotation_raw, ': ')",
+                "calculate": "split(datum.text_annotation_raw, ';')",
                 "as": "text_annotation"
-              },
-              {
-                "calculate": "12",
-                "as": "textSizee"
               }
             ],
             "mark": {
@@ -163,10 +147,9 @@
               "baseline": "top",
               "fontStyle": "italic",
               "limit": 1000,
-              "fontSize": 12},
+            "fontSize": 10},
             "encoding": {
-              "text": {"field": "text_annotation", "type": "nominal"},
-              "fontSize": {"field": "textSizee"}}
+              "text": {"field": "text_annotation"}}
           }
         ]
       }
@@ -288,6 +271,5 @@
       }
     ]
   }
-],
-  "config": {"title": {"font": "sans-serif", "fontSize": 18}}
+]
   }

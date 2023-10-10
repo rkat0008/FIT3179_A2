@@ -20,7 +20,7 @@
       },
       {
         "aggregate": [
-          { "op": "mean", "field": "PaxOut", "as": "PaxOutSum" }
+          { "op": "sum", "field": "PaxOut", "as": "PaxOutSum" }
         ],
         "groupby": ["Port Country", "Month_Number"]
       }
@@ -41,7 +41,7 @@
         "field": "Month_Number",
         "type": "ordinal",
         "title": "Month",
-        "sort": {"op": "min", "field": "Month_Number", "order": "ascending"}
+        "sort": [1,2,3,4,5,6,7,8,9,10,11,12]
       },
       "y": {
         "field": "Port Country",
@@ -55,7 +55,12 @@
           "title": null
         },
         "scale": {"type": "linear"}
-      }
+      },
+      "tooltip": [
+        {"field": "International", "type": "nominal", "title": "City"},
+        {"field": "PaxOutSum", "type": "quantitative"},
+        {"field": "Port Country", "type": "nominal"}
+      ]
     }
   }
   
