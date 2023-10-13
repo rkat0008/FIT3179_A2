@@ -1,5 +1,16 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Figure D: International Airline Market Share",
+      "subtitle": ["Seats Flown out of Melbourne Airport, by Year and Airline", "(Please note that data for 2023 is only up to and inclusive of April.)",
+      "Source: Bureau of Infrastructure and Transport Research Economics"],
+      "subtitleFontStyle": "italic",
+      "subtitlePadding": 5,
+      "frame": "bounds",
+      "anchor": "start",
+      "offset": 12,
+      "zindex": 0,
+      "fontSize": 20},
     "width": 250,
     "data": { "url": "../data/Airline_Stats.csv",
     "format": {
@@ -8,12 +19,16 @@
       }},
     "transform": [                 
         {
-            "calculate": "datum.Airline === 'Qantas Airways' || datum.Airline === 'Singapore Airlines' || datum.Airline === 'Qatar Airways' || datum.Airline === 'Air New Zealand' || datum.Airline === 'Virgin Australia' || datum.Airline === 'Emirates'|| datum.Airline === 'Jetstar' ? datum.Airline : '1) Other Airlines'",
+            "calculate": "datum.Airline === '1. Qantas Airways' || datum.Airline === '4. Singapore Airlines' || datum.Airline === '6. Qatar Airways' || datum.Airline === '5. Virgin Australia' || datum.Airline === '3. Emirates'|| datum.Airline === '2. Jetstar' ? datum.Airline : '7. Other Airlines'",
             "as": "Select_Airlines"
         },
         {
+          "calculate": "datum.Airline_Original_Name === 'Qantas Airways' || datum.Airline_Original_Name === 'Singapore Airlines' || datum.Airline_Original_Name === 'Qatar Airways' || datum.Airline_Original_Name === 'Virgin Australia' || datum.Airline_Original_Name === 'Emirates'|| datum.Airline_Original_Name === 'Jetstar' ? datum.Airline_Original_Name : 'Other Airlines'",
+          "as": "Select_Airlines_Original_Name"
+        },
+        {
             "aggregate": [{"op": "sum", "field": "MaxSeats", "as": "MaxSeatsSum"}],
-            "groupby": ["Month", "Select_Airlines", "Year"]
+            "groupby": ["Month", "Select_Airlines", "Year", "Select_Airlines_Original_Name"]
         },
         {
             "sort": [{ "field": "MaxSeats", "order": "descending"}],
@@ -40,19 +55,20 @@
         "color": {
             "field": "Select_Airlines",
             "scale": {"scheme": "tableau10"},
-            "sort": {"op": "sum", "field": "MaxSeatsSum", "order": "descending"}
+            "title": "Airlines",
+            "sort": ["1. Qantas Airways", "2. Jetstar", "3. Emirates", "4. Singapore Airlines", "5. Virgin Australia", "6. Qatar Airways", "7. Other Airlines"]
         },
         "x": {
           "aggregate": "sum",
           "field": "MaxSeatsSum",
-          "title": "International Market Share",
+          "title": "Market Share",
           "stack":  "normalize"
         },
         "tooltip": [
-            {"field": "Select_Airlines", "type": "nominal", "title": "Airline"},
-            {"field": "MaxSeatsSum", "type": "quantitative", "format": ","},
-            {"field": "Year", "type": "ordinal"},
-            {"field": "Percentage", "type": "quantitative", "format": ".2%"}
+            {"field": "Year", "type": "quantitative", "title": "Year"},
+            {"field": "Select_Airlines_Original_Name", "type": "nominal", "title": "Airline"},
+            {"field": "MaxSeatsSum", "type": "quantitative", "format": ",", "title": "Seats Flown Out"},
+            {"field": "Percentage", "type": "quantitative", "format": ".2%", "title": "Market Share"}
           ]
       }
     }]

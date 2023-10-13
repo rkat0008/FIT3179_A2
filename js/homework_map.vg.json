@@ -82,7 +82,7 @@
             "as": ["dest_latitude", "dest_longitude"]
           }
         ],
-        "mark": {"type": "rule", "opacity": 0.01, "color": "gray"},
+        "mark": {"type": "rule", "opacity": 0.02, "color": "gray"},
         "encoding": {
           "longitude": {
             "field": "origin_longitude",
@@ -114,10 +114,10 @@
             "field": "Latitude",
             "type": "quantitative"
           },
-          "color": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "linear", "range": ["gray", "black"]}},
+          "color": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "sqrt", "range": ["gray", "black"]}},
           "tooltip": [
             {"field": "International", "type": "nominal", "title": "City"},
-            {"field": "PaxOutSum", "type": "quantitative"},
+            {"field": "PaxOutSum", "type": "quantitative", "format": ","},
             {"field": "Port Region", "type": "nominal"}
           ]
         },        
@@ -131,7 +131,7 @@
               },
               {"filter": "datum.ranking == 1"},
               {
-                "calculate": "datum['International'] + ' is the most popular destination; with ' + datum['PaxOutSum'] + ' passengers from Melbourne.'",
+                "calculate": "datum['International'] + ' was the most popular destination,; with ' + datum['PaxOutSum'] + ' passengers from Melbourne.'",
                 "as": "text_annotation_raw"
               },
               {
