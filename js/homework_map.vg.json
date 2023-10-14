@@ -10,7 +10,7 @@
       "subtitleFontStyle": "italic",
       "subtitlePadding": 5,
       "frame": "bounds",
-      "anchor": "middle",
+      "anchor": "start",
       "offset": 12,
       "zindex": 0
     },
@@ -156,7 +156,7 @@
     ]
 },
 {
-  "width": 800,
+  "width": 600,
   "height": 60,
   "data": {
     "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
@@ -196,7 +196,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
   },
-"width": 800,
+"width": 600,
     "height": 200,
     "layer": [
       {
@@ -235,7 +235,11 @@
             "field": "OutSeatsMax",
             "type": "quantitative",
             "title": "Annual Passengers",
-            "legend": {"clipHeight": 20},
+            "legend": {"clipHeight": 20,
+            "orient": "none",
+            "direction": "vertical",
+            "legendX": 0,
+            "legendY": 0},
             "scale": {"rangeMax": 1500}
           },
           "color": {"field": "NONE", "type": "nominal", "legend": null}

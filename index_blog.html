@@ -11,7 +11,10 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/">
 
-    
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
@@ -190,9 +193,8 @@
 <main class="container">
   <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
     <div class="col-lg-6 px-0">
-      <h1 class="display-4 fst-italic">International flights out of Melbourne</h1>
+      <h1 class="display-4 fst-italic">International Flights out of Melbourne</h1>
       <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Continue reading...</a></p>
     </div>
   </div>
 
@@ -203,11 +205,29 @@
       </h3>
 
       <article class="blog-post">
-        <h2 class="display-5 link-body-emphasis mb-1">A Quick Glance: Flights out of Melbourne Airport</h2>
+        <h2 class="display-5 link-body-emphasis mb-1">Flights out of Melbourne Airport</h2>
         <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-
         <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
+        <!-- VEGA GOES IN HERE -->
+        <!-- Graph 1 -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8"> <!-- This will be on the left -->
+              <div class="">
+                <div id="symbol_map"></div>
+                <script type="text/javascript">
+                  var spec1 = "js/homework_map.vg.json";
+                  vegaEmbed('#symbol_map', spec1).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                  }).catch(console.error);
+                </script>
+              </div>
+            </div>
+            <div class="col-md-4"> <!-- This will be on the right -->
+              <p>Content on the right ;lasdk as;ldksa;dkas;ld kas;ld kasl;d kasl;d ka;sldkas; dkas ;dkas;ldk as;ldk as;ldk as;ldkasl; dkas; dkas;l dkas; dka ;dsl</p>
+            </div>
+          </div>
+        </div>
         <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
         <h2>Blockquotes</h2>
         <p>This is an example blockquote in action:</p>
@@ -254,6 +274,109 @@
         <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
         <pre><code>Example code block</code></pre>
         <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
+      </article>
+
+      <article class="blog-post">
+        <h2 class="display-5 link-body-emphasis mb-1">Niche but Busy Routes</h2>
+        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
+        <p>The busiest routes are often the most competitive and full.</p>
+        <!-- VEGA GOES IN HERE -->
+        <!-- Graph 1 -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8"> <!-- This will be on the left -->
+              <div class="">
+                <div id="scatter"></div>
+                <script type="text/javascript">
+                  var spec2 = "js/scatterplot.vg.json";
+                  vegaEmbed('#scatter', spec2).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                  }).catch(console.error);
+                </script>
+              </div>
+            </div>
+            <div class="col-md-4"> <!-- This will be on the right -->
+              <p class="fst-italic">(You can interact with the date filters on the bottom left and the legend on the right; default is set to March 2023, the last period for which data is available.)</p>
+              <p>The scatterplot on the left shows international routes out of Melbourne Airport, ordered by passengers flown (y-axis) and the average load/seat occupancy factor (x-axis).</p>
+              <p>At first glance, it's apparent that the busiest routes often have the highest seat occupancy, in addition to being highly competitive. As a region, South-East Asia performs the strongest across all indicators, with routes such as those to Singapore, Ho Chi Minh City and Denpasar/Bali.</p>
+              <p class="fst-italic">(You can click anywhere on the scatterplot to view other regions, or you can click on the legend.)</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <p>Furthermore, the scatterplot also highlights niche routes with a high seat occupancy but relatively fewer passengers. For March 2023, these include routes to Hong Kong, Honolulu and Hanoi, where only one airline operates. Only one airline operates on the aforementioned busy routes, so it's likely that Melburnians may see more competition entering the market in due course.</p>
+        <p>Unfortunately, the scatterplot also highlights ostensibly unsuccessful routes during March 2023, such as those to Osaka and select Chinese cities (all North-East Asian cities). This may be due to China's delayed re-opening after COVID-19. Changing the time filter to the COVID-19 lockdown period would also highlight that many routes often had paltry seat occupancy in the low teens. For example, flights to Doha during the COVID-19 pandemic were only about 10% full - quite a relevant observation considering the recent rejection of additional flights by the Australian Government.</p>
+        <p>(Please also note that data for London is slightly misleading as the seat occupancy factor only accounts for people flying from Melbourne to London on the same flight number.)</p>
+      </article>
+
+      <article class="blog-post">
+        <h2 class="display-5 link-body-emphasis mb-1">High Airfares Have Been in the News</h2>
+        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
+        <p>The busiest routes are often the most competitive and full.</p>
+        <!-- VEGA GOES IN HERE -->
+        <!-- Graph 1 -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8"> <!-- This will be on the left -->
+              <div class="">
+                <div id="price_index"></div>
+                <script type="text/javascript">
+                  var spec3 = "js/price_index.vg.json";
+                  vegaEmbed('#price_index', spec3).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                  }).catch(console.error);
+                </script>
+              </div>
+            </div>
+            <div class="col-md-4"> <!-- This will be on the right -->
+              <p class="fst-italic">(You can interact with chart on the right by hovering over the x-axis.)</p>
+              <p>The index chart on the left shows the inflation-adjusted change in price, by class of travel, based on the chosen year index. The price index is based on the busiest 70 domestic routes and only looks at the chepeast airfare available on the last Thursday of each month.</p>
+              <p>Definitions of each Class of Travel (BITRE, 2023):</p>
+        <ul>
+          <li><strong>Best Discount: </strong>Cheapest airfare across all classes, excluding baggage surcharges.</li>
+          <li><strong>Business Class: </strong>Cheapest Business Class fare.</li>
+          <li><strong>Full Economy: </strong>Cheapest Economy fare that is fully flexible and refundable (discontinued after 2015).</li>
+          <li><strong>Restricted Economy: </strong>Cheapest Economy fare that comes with some restrictions (i.e., one level below fully flexible).</li>
+        </ul>
+            </div>
+          </div>
+        </div>
+        <br>
+        <p>High airfares have been in the news lately, particularly as there's been a senate inquiry into the Australian federal government's decision to deny Qatar Airways the ability to fly an additional 28 weekly routes to major Australian airports. International airfares, particularly those to Eurppe, are now significantly higher than they were before the COVID-19 pandemic.</p>
+        <p>Unfortunately, data for international airfares is not available, though data for domestic airfares is indeed available and can be used a barometer to gauge the overall state of Australian airfares.</p>
+        <p>Looking at the price index, it's apparent that there's been an overall inflation-adjusted decline in prices since 1992. Even when compared to 2019, only Best Discount fares are marginally more expensive. While this may seem counter-intuitive, it's improtant to note the methodology used by BITRE (2023): only the cheapest published airfares on the last Thursday of each month are taken into account. These price indices don't necessarily reflect the airfares paid by the average domestic traveller, as such data is not reported by airlines.</p>
+        <p>However, it's also important to note that the price index is inflation-adjusted. Given currency inflation over the last couple of years, the average traveller would 'feel' that they're now paying more for airfares, even if the the prices have remained stable in real terms. As such, discussions regarding high airfares after the COVID-19 pandemic should also take the role of currency inflation into account.</p>
+      </article>
+
+      <article class="blog-post">
+        <h2 class="display-5 link-body-emphasis mb-1">Market Share and the Qatar Airways Question</h2>
+        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
+        <!-- VEGA GOES IN HERE -->
+        <!-- Graph 1 -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6"> <!-- This will be on the left -->
+              <div class="">
+                <div id="market_share"></div>
+                <script type="text/javascript">
+                  var spec4 = "js/airline_share.vg.json";
+                  vegaEmbed('#market_share', spec4).then(function(result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                  }).catch(console.error);
+                </script>
+              </div>
+            </div>
+            <div class="col-md-6"> <!-- This will be on the right -->
+              <p>The normalised bar chart on the left shows the international flight market share held by each airline, based on total seats flown out of Melbourne Airport.</p>
+              <p>As expected, the Qantas Group (Qantas Airways and Jetstar) is the most dominant at Melbourne Airport. Their position is further complemented by Emirates, who are partnered with the Qantas Group. Other key players such as Singapore Airlines and Qatar Airways also command a formidable market share.</p>
+              <p>At the time of wiring this (14 October 2023), the Australian Government have been criticised for denying Qatar Airways an additional 28 weekly flights into major Australian Airports, on top of the 21 weekly flights they currently operate.</p>
+              <p>Critics of the decision have cited that additional flights would've reduced airfares and that the additional flights would've otherwise boosted the Australian economy by bringing additional tourists. Qatar Airways, for their own part, have mentioend that they kept flying to Australia during the COVID-19 pandemic, despite very low traveller numbers. (Looking at the scatterplot from above would show that flights to Doha were only around 10% occupied on average during the pandemic years.)</p>
+              <p>In what is a shocking indictment of Qantas, during 2021, a year wherein travel to Australia was severely restricted until mid-November, Qatar Airways flew out more than twice as many seats as did Qantas, which is supposedly considered to be Australia's "national airline!"</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <p>Such findings make a persuasive argument for Qatar Airways being granted additional flights to major Australian airports. At least based on the available data, it seems that Qatar Airways kept flying out planes that were only around 10% full, over a vast distance, at a time when Australians had been left 'abandoned' by their "national airline." While these additional flights would ultimately pad Qatar Airways' bottom line, it's also important to consider their positive impact on international airfares and on the Australian tourism industry.</p>
       </article>
 
       <article class="blog-post">
@@ -333,7 +456,5 @@
     <a href="#">Back to top</a>
   </p>
 </footer>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-    </body>
+  </body>
 </html>

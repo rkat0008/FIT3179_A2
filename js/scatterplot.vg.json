@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "A scatterplot showing horsepower and miles per gallons for various cars.",
-  "width": 400,
+  "width": 600,
   "height": 300,
   "title": {
     "text": "Air Route Load Factor vs. Passengers Flown, by Selected Year and Month",
@@ -11,19 +10,19 @@
     "frame": "bounds",
     "anchor": "middle",
     "offset": 12,
-    "zindex": 0
+    "zindex": 0,
+    "fontSize": 20
   },
   "data": {
     "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv",
     "format": {
-      "type": "csv",
-      "parse": {"month": "date:'%m/%d/%Y'"}
+      "parse": {"date": "date:'%d/%m/%Y'"}
     }
   },
   "params": [
     {
       "name": "Year_Selection",
-      "value": 2009,
+      "value": 2023,
       "bind": {
         "input": "range",
         "min": 2009,
@@ -34,7 +33,7 @@
     },
     {
       "name": "Month_Selection",
-      "value": "January",
+      "value": "March",
       "bind": {
         "input": "select",
         "options": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -43,17 +42,14 @@
     },
     {
       "name": "Region",
+      "value": "SE Asia",
       "select": {"type": "point", "fields": ["Port Region"]},
       "bind": "legend"
     }
   ],
   "transform": [
     {
-      "calculate": "toDate(datum.Month, '%d/%m/%Y')",
-      "as": "Date"
-    },
-    {
-      "calculate": "year(datum.Date)",
+      "calculate": "year(datum.Month)",
       "as": "Year"
     },
     {
@@ -66,7 +62,7 @@
       "encoding": {
         "x": {"field": "Average_Load_Factor", "type": "quantitative", "axis": {"format": ".2%"}},
         "y": {"field": "PaxOut", "type": "quantitative", "scale": {"type": "log"}, "axis": {"title": "Y-Axis", "tickCount": 4, "grid": true}},
-        "size": {"field": "Airline_Count"},
+        "size": {"field": "Airline_Count", "legend": {"clipHeight": 10}},
         "color": {"field": "Port Region"},
         "tooltip": [
           {"field": "International", "type": "nominal", "title": "City"},

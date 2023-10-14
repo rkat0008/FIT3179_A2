@@ -50,11 +50,12 @@
       },
       "color": {
         "field": "PaxOutSum",
+        "aggregate": "mean",
         "type": "quantitative",
         "legend": {
           "title": null
         },
-        "scale": {"type": "linear"}
+        "scale": {"type": "linear", "range": ["red", "black"]}
       },
       "tooltip": [
         {"field": "International", "type": "nominal", "title": "City"},

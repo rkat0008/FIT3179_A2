@@ -11,7 +11,7 @@
       "offset": 12,
       "zindex": 0,
       "fontSize": 20},
-    "width": 250,
+    "width": 400,
     "data": { "url": "../data/Airline_Stats.csv",
     "format": {
         "type": "csv",
@@ -61,7 +61,7 @@
         "x": {
           "aggregate": "sum",
           "field": "MaxSeatsSum",
-          "title": "Market Share",
+          "title": "Market Share, %",
           "stack":  "normalize"
         },
         "tooltip": [

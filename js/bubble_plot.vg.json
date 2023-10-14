@@ -1,7 +1,17 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-      "url": "../data/CityPair_Clean.csv"
+      "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
+    },
+    "title": {
+      "text": "Most Popular International Regions out of Melbourne, Over Time",
+      "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
+      "subtitleFontStyle": "italic",
+      "subtitlePadding": 5,
+      "frame": "bounds",
+      "anchor": "middle",
+      "offset": 12,
+      "zindex": 0
     },
     "width": 800,
     "height": 200,
