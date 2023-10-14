@@ -3,12 +3,12 @@
   "width": 600,
   "height": 300,
   "title": {
-    "text": "Air Route Load Factor vs. Passengers Flown, by Selected Year and Month",
+    "text": "Figure B: Route Load Factor vs. Passengers Flown, by Selected Year and Month",
     "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
     "subtitleFontStyle": "italic",
     "subtitlePadding": 5,
     "frame": "bounds",
-    "anchor": "middle",
+    "anchor": "start",
     "offset": 12,
     "zindex": 0,
     "fontSize": 20
@@ -60,20 +60,20 @@
     {
       "mark": "point",
       "encoding": {
-        "x": {"field": "Average_Load_Factor", "type": "quantitative", "axis": {"format": ".2%"}},
-        "y": {"field": "PaxOut", "type": "quantitative", "scale": {"type": "log"}, "axis": {"title": "Y-Axis", "tickCount": 4, "grid": true}},
-        "size": {"field": "Airline_Count", "legend": {"clipHeight": 10}},
-        "color": {"field": "Port Region"},
+        "x": {"field": "Average_Load_Factor", "type": "quantitative", "axis": {"format": ".2%", "title": "Seat Occupancy Factor, %"}},
+        "y": {"field": "PaxOut", "type": "quantitative", "scale": {"type": "log"}, "axis": {"title": "Passengers Flown Out", "tickCount": 4, "grid": true}},
+        "size": {"field": "Airline_Count", "legend": {"clipHeight": 10}, "title": "No. Airlines"},
+        "color": {"field": "Port Region", "title": "Region"},
         "tooltip": [
           {"field": "International", "type": "nominal", "title": "City"},
-          {"field": "PaxOut", "type": "quantitative"},
-          {"field": "OutSeatsMax", "type": "quantitative"},
-          {"field": "Average_Load_Factor", "type": "quantitative", "format": ".2%"},
-          {"field": "Port Region", "type": "nominal"},
+          {"field": "PaxOut", "type": "quantitative", "format": ",", "title": "Passengers"},
+          {"field": "OutSeatsMax", "type": "quantitative", "format": ",", "title": "Available Seats"},
+          {"field": "Average_Load_Factor", "type": "quantitative", "format": ".2%", "title": "Seat Occupancy"},
+          {"field": "Airline_Count", "type": "quantitative", "title": "Airlines Flying"},
           {"field": "Port Country", "type": "nominal"},
-          {"field": "Airline_Count", "type": "quantitative"},
-          {"field": "Population", "type": "quantitative"},
-          {"field": "State", "type": "nominal"}
+          {"field": "State", "type": "nominal"},
+          {"field": "Port Region", "type": "nominal"},
+          {"field": "Population", "type": "quantitative", "format": ","}
         ],
         "opacity": {
           "condition": {"param": "Region", "value": 1},

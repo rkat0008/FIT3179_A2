@@ -1,12 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "Australian Domestic Airfares, Over Time, by Class of Travel",
+      "text": "Figure C: Australian Domestic Airfares, Over Time, by Class of Travel",
       "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics (BITRE)",
       "subtitleFontStyle": "italic",
       "subtitlePadding": 5,
       "frame": "bounds",
-      "anchor": "middle",
+      "anchor": "start",
       "offset": 12,
       "zindex": 0,
       "fontSize": 20
@@ -51,7 +51,7 @@
           "x": {"field": "date", "type": "temporal", "axis": {"title": "Test"}},
           "y": {
             "field": "indexed_price", "type": "quantitative",
-            "axis": {"format": "%", "title": "Change in Price, %"}
+            "axis": {"format": "%", "title": ["Change in Price, %", "(Inflation-Adjusted)"]}
           },
           "color": {"field": "symbol", "type": "nominal",
           "axis": {"title": "Class of Travel"}}

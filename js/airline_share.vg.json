@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
       "text": "Figure D: International Airline Market Share",
-      "subtitle": ["Seats Flown out of Melbourne Airport, by Year and Airline", "(Please note that data for 2023 is only up to and inclusive of April.)",
+      "subtitle": ["Based on Seats Flown out of Melbourne Airport, by Year and Airline", "(Please note that data for 2023 is only up to and inclusive of April.)",
       "Source: Bureau of Infrastructure and Transport Research Economics"],
       "subtitleFontStyle": "italic",
       "subtitlePadding": 5,

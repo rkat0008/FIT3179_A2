@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "International Routes out of Melbourne Airport, Selected Period",
+      "text": "Figure A: International Routes out of Melbourne, by Selected Period and Region",
       "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
       "subtitleFontStyle": "italic",
       "subtitlePadding": 5,
@@ -99,12 +99,12 @@
       {
         "transform": [
             {"filter": {"param": "time_brush"}},
+            {"filter": {"param": "click"}},
           {
             "aggregate": [
-              {"op": "sum", "field": "PaxOut", "as": "PaxOutSum"},
-              { "op": "sum", "field": "PaxOut2", "as": "PaxOutSum2"}
+              {"op": "sum", "field": "PaxOut", "as": "PaxOutSum"}
             ],
-            "groupby": ["International", "Longitude", "Latitude"]
+            "groupby": ["International", "Longitude", "Latitude", "Port Region", "Port Country", "Population", "State"]
           }
         ],
         "encoding": {
@@ -116,17 +116,20 @@
             "field": "Latitude",
             "type": "quantitative"
           },
-          "size": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "sqrt"}},
           "color": {"field": "PaxOutSum", "type": "quantitative", "scale": {"type": "sqrt", "range": ["hotpink", "black"]},
           "legend": {"clipHeight": 1,
           "orient": "none",
           "direction": "vertical",
+          "title": "Passengers",
           "legendX": -100,
-          "legendY": 150}},
+          "legendY": 0}},
           "tooltip": [
             {"field": "International", "type": "nominal", "title": "City"},
-            {"field": "PaxOutSum", "type": "quantitative", "format": ","},
-            {"field": "Port Region", "type": "nominal"}
+            {"field": "PaxOutSum", "type": "quantitative", "format": ",", "title": "Passengers"},
+            {"field": "Port Country", "type": "nominal", "title": "Country"},
+            {"field": "State", "type": "nominal", "title": "State"},
+            {"field": "Port Region", "type": "nominal", "title": "Region"},
+            {"field": "Population", "type": "quantitative", "format": ","}
           ]
         },        
         "layer": [
@@ -173,7 +176,15 @@
     "url": "https://raw.githubusercontent.com/rkat0008/FIT3179_A2/main/data/CityPair_Clean.csv"
   },
   "mark": "area",
-  "title": "Use this line chart to filter out the data based on time",
+  "title": {
+    "text": "SELECT A TIME INTERVAL",
+    "subtitle": "Total Passengers Flown out of Melbourne",
+    "subtitlePadding": 5,
+    "frame": "bounds",
+    "anchor": "middle",
+    "offset": 0,
+    "zindex": 0
+  },
   "params": [
     {
       "name": "time_brush",
@@ -190,18 +201,17 @@
       "aggregate": "sum",
       "field": "PaxOut",
       "axis": {"tickCount": 3, "grid": false},
-      "title": "Count"
+      "title": "Passengers"
     }
   }
 }, {
   "title": {
-    "text": "Most Popular International Regions out of Melbourne, Over Time",
-    "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics",
-    "subtitleFontStyle": "italic",
+    "text": "SELECT A REGION",
+    "subtitle": "Most Popular International Regions out of Melbourne",
     "subtitlePadding": 5,
     "frame": "bounds",
     "anchor": "middle",
-    "offset": 12,
+    "offset": 0,
     "zindex": 0
   },
   "data": {
@@ -221,7 +231,8 @@
           {
             "calculate": "year(datum.Month)",
             "as": "Year"
-          }
+          },
+          {"filter": {"param": "click"}}
         ],
         "encoding": {
           "x": {
@@ -238,23 +249,32 @@
           "y": {
             "field": "Port Region",
             "type": "nominal",
-            "sort": {"op": "sum", "field": "OutSeatsMax", "order": "descending"},
+            "sort": {"op": "sum", "field": "PaxOut", "order": "descending"},
             "axis": {"title": "", "grid": true, "labelPadding": 10}
           },
           "size": {
             "aggregate": "sum",
-            "field": "OutSeatsMax",
+            "field": "PaxOut",
             "type": "quantitative",
-            "title": "Annual Passengers",
+            "title": ["Passengers", "(Bubble Plot)"],
             "legend": {"clipHeight": 20,
             "orient": "none",
             "direction": "vertical",
             "legendX": -100,
-            "legendY": 0},
+            "legendY": 280},
             "scale": {"rangeMax": 1500}
           },
-          "color": {"field": "NONE", "type": "nominal", "legend": null}
-        }
+          "color": {"field": "NONE", "type": "nominal", "legend": null},
+          "tooltip": [
+            {"field": "Month", "timeUnit": "year", "type": "temporal", "title": "Year"},
+            {"field": "Port Region", "type": "nominal", "title": "Region"},
+            {"aggregate": "sum", "field": "PaxOut", "type": "quantitative", "format": ",", "title": "Passengers"}
+          ]
+        },
+        "params": [{
+          "name": "click",
+          "select": {"type": "point", "encodings": ["y"]}
+        }]
       },
       {
         "mark": "rule",
