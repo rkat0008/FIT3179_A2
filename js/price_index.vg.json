@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
       "text": "Figure C: Australian Domestic Airfares, Over Time, by Class of Travel",
-      "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics (BITRE)",
+      "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics, 2023-b",
       "subtitleFontStyle": "italic",
       "subtitlePadding": 5,
       "frame": "bounds",
