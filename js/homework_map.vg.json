@@ -1,5 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "white",
     "title": {
       "text": "Figure A: International Routes out of Melbourne, by Selected Period and Region",
       "subtitle": "Source: Bureau of Infrastructure and Transport Research Economics, 2023-c",
